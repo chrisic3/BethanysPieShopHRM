@@ -4,6 +4,7 @@ namespace BethanysPieShopHRM;
 
 public class Employee
 {
+    // Need to change these all to private and add methods
     public string firstName;
     public string lastName;
     public string email;
@@ -16,19 +17,37 @@ public class Employee
 
     const int MinimalHoursWorkedUnit = 1;
 
+    public Employee(string firstName, string lastName, string email, 
+        DateTime birthDay, double hourlyRate)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthDay = birthDay;
+        this.hourlyRate = hourlyRate;
+    }
+
+    public Employee(string firstName, string lastName, string email, 
+        DateTime birthDay) : this(firstName, lastName, email, birthDay, 0)
+    {
+
+    }
+
     public void PerformWork()
     {
-        PerformWork(MinimalHoursWorkedUnit); // Call the other method instead of duplicating
+        // Call the overloaded method instead of duplicating
+        PerformWork(MinimalHoursWorkedUnit);
+
         //numberOfHoursWorked++;
         //Console.WriteLine($"{firstName} {lastName} has worked for " +
         //  $"{numberOfHoursWorked} hour(s).");
     }
 
-    public void PerformWork(int numberOfHours)
+    public void PerformWork(int numberOfHoursWorked)
     {
-        numberOfHoursWorked += numberOfHoursWorked;
+        this.numberOfHoursWorked += numberOfHoursWorked;
         Console.WriteLine($"{firstName} {lastName} has worked for " +
-            $"{numberOfHours} hour(s).");
+            $"{numberOfHoursWorked} hour(s).");
     }
 
     public double ReceiveWage(bool resetHours = true)
