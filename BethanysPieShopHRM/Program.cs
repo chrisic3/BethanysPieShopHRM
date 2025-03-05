@@ -26,7 +26,7 @@ double receivedWageGeorge = george.ReceiveWage(true);
 Console.WriteLine($"Wage paid (message from Program): {receivedWageBethany}");
 Console.WriteLine($"Wage paid (message from Program): {receivedWageGeorge}");
 
-
-
-string bethanyAsJson = bethany.ConvertToJson();
-Console.WriteLine(bethanyAsJson);
+WorkTask task;
+task.description = "Bake pies";
+task.hours = 3;
+task.PerformWorkTask();

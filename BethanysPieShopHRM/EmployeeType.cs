@@ -1,7 +1,7 @@
 namespace BethanysPieShopHRM
 {
 
-    public enum EmployeeType
+    enum EmployeeType
     {
         Sales,
         Manager,
