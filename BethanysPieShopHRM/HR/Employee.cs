@@ -1,9 +1,8 @@
 using System;
 using Newtonsoft.Json;
 
-namespace BethanysPieShopHRM
+namespace BethanysPieShopHRM.HR
 {
-
     internal class Employee
     {
         // Need to change these all to private and add methods
