@@ -9,16 +9,13 @@ namespace BethanysPieShopHRM.HR
         public string firstName;
         public string lastName;
         public string email;
-        
         public int numberOfHoursWorked;
         public double wage;
         public double hourlyRate;
-        
         public DateTime birthDay;
-
         const int MinimalHoursWorkedUnit = 1;
-
         public EmployeeType employeeType;
+        public static double taxRate = 0.15;
 
         public Employee(string firstName, string lastName, string email, 
             DateTime birthDay, double hourlyRate, EmployeeType employeeType)
@@ -110,16 +107,21 @@ namespace BethanysPieShopHRM.HR
 
         public double ReceiveWage(bool resetHours = true)
         {
+            double wageBeforeTax = 0.0;
+
             if (employeeType == EmployeeType.Manager)
             {
                 Console.WriteLine($"An extra was added to the wage since {firstName} " +
                     $"is a manager.");
-                wage = numberOfHoursWorked * hourlyRate * 1.25;
+                wageBeforeTax = numberOfHoursWorked * hourlyRate * 1.25;
             }
             else
             {
-                wage = numberOfHoursWorked * hourlyRate;
+                wageBeforeTax = numberOfHoursWorked * hourlyRate;
             }
+
+            double taxAmount = wageBeforeTax * taxRate;
+            wage = wageBeforeTax - taxAmount;
 
             Console.WriteLine($"{firstName} {lastName} has received a wage of " +
                 $"{wage} for {numberOfHoursWorked} hour(s) of work.");
@@ -132,6 +134,11 @@ namespace BethanysPieShopHRM.HR
             return wage;
         }
 
+        public static void DisplayTaxRate()
+        {
+            Console.WriteLine($"The current tax rate is {taxRate}");
+        }
+
         public string ConvertToJson()
         {
             string json = JsonConvert.SerializeObject(this);
@@ -142,7 +149,7 @@ namespace BethanysPieShopHRM.HR
         {
             Console.WriteLine($"\nFirst name: \t{firstName}\nLast name: \t" +
                 $"{lastName}\nEmail: \t\t{email}\nBirthday: \t" +
-                $"{birthDay.ToShortDateString()}\n");
+                $"{birthDay.ToShortDateString()}\nTax rate: \t{taxRate}\n");
         }
     }
 }
