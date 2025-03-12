@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="BethanysPieShopHRM.Logic">
-      <HintPath>..\..\..\c-sharp-10-fundamentals 2025-03-11 17_46_05\m9\BethanysPieShopHRM.Logic.dll</HintPath>
+      <HintPath>..\BethanysPieShopHRM.Logic.dll</HintPath>
     </Reference>
   </ItemGroup>
 
