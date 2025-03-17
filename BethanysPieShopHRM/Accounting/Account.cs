@@ -2,21 +2,24 @@ using System;
 
 namespace BethanysPieShopHRM.Accounting
 {
-    internal class Account
-    {
-        private string accountNumber;
+    //internal record Account
+    //{
+    //    private string accountNumber;
 
-        public string AccountNumber
-        {
-            get
-            {
-                return accountNumber;
-            }
+    //    public string AccountNumber
+    //    {
+    //        get
+    //        {
+    //            return accountNumber;
+    //        }
 
-            set
-            {
-                accountNumber = value;
-            }
-        }
-    }
+    //        set
+    //        {
+    //            accountNumber = value;
+    //        }
+    //    }
+    //}
+
+    // Positional record
+    public record Account(string AccountNumber);
 }
