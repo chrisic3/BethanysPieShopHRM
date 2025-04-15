@@ -7,16 +7,126 @@ namespace BethanysPieShopHRM.HR
     internal class Employee
     {
         // Need to change these all to private and add methods
-        public string firstName;
-        public string lastName;
-        public string email;
-        public int numberOfHoursWorked;
-        public double wage;
-        public double? hourlyRate; // ? means this type is nullable
-        public DateTime birthDay;
-        const int MinimalHoursWorkedUnit = 1;
-        public EmployeeType employeeType;
+        private string firstName;
+        private string lastName;
+        private string email;
+        private int numberOfHoursWorked;
+        private double wage;
+        private double? hourlyRate; // ? means this type is nullable
+        private DateTime birthDay;
+        private const int MinimalHoursWorkedUnit = 1;
+        private EmployeeType employeeType;
+
         public static double taxRate = 0.15;
+
+        // PROPERTIES
+        #region Properties
+
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
+            }
+            set
+            {
+                firstName = value;
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return lastName;
+            }
+            set
+            {
+                lastName = value;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                email = value;
+            }
+        }
+
+        public int NumberOfHoursWorked
+        {
+            get
+            {
+                return numberOfHoursWorked;
+            }
+            private set // Only the Employee class can set this value
+            {
+                numberOfHoursWorked = value;
+            }
+        }
+
+        public double Wage
+        {
+            get
+            {
+                return wage;
+            }
+            private set
+            {
+                wage = value;
+            }
+        }
+
+        public double? HourlyRate
+        {
+            get
+            {
+                return hourlyRate;
+            }
+            set
+            {
+                // Validate if the value entered is greater than 0
+                if (value < 0)
+                {
+                    hourlyRate = 0;
+                }
+                else
+                {
+                    hourlyRate = value;
+                }
+            }
+        }
+
+        public DateTime BirthDay
+        {
+            get
+            {
+                return birthDay;
+            }
+            set
+            {
+                birthDay = value;
+            }
+        }
+
+        public EmployeeType EmployeeType
+        {
+            get
+            {
+                return employeeType;
+            }
+            set
+            {
+                employeeType = value;
+            }
+        }
+
+        #endregion
 
         public Employee(string firstName, string lastName, string email, 
             DateTime birthDay, double? hourlyRate, EmployeeType employeeType)
