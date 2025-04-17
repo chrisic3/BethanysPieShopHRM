@@ -15,7 +15,6 @@ namespace BethanysPieShopHRM.HR
         private double? hourlyRate; // ? means this type is nullable
         private DateTime birthDay;
         private const int minimalHoursWorkedUnit = 1;
-        private EmployeeType employeeType;
 
         public static double taxRate = 0.15;
 
@@ -114,39 +113,30 @@ namespace BethanysPieShopHRM.HR
             }
         }
 
-        public EmployeeType EmployeeType
-        {
-            get
-            {
-                return employeeType;
-            }
-            set
-            {
-                employeeType = value;
-            }
-        }
-
         #endregion
 
+        // CONSTRUCTORS
+        #region Constructors
+
         public Employee(string firstName, string lastName, string email, 
-            DateTime birthDay, double? hourlyRate, EmployeeType employeeType)
+            DateTime birthDay, double? hourlyRate)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             BirthDay = birthDay;
             // ?? is null coalesce, 10 is default if null
-            HourlyRate = hourlyRate ?? 10; 
-            EmployeeType = employeeType;
+            HourlyRate = hourlyRate ?? 10;
         }
 
         // The ": this()" calls the other constructor and passes it
         // the required parameters.
         public Employee(string firstName, string lastName, string email, 
-            DateTime birthDay) : this(firstName, lastName, email, birthDay, 0,
-            EmployeeType.StoreManger)
+            DateTime birthDay) : this(firstName, lastName, email, birthDay, 0)
         {
         }
+
+        #endregion
 
         public void PerformWork()
         {
@@ -195,8 +185,9 @@ namespace BethanysPieShopHRM.HR
             return bonus;
         } */
 
-        // out does not have to be initialized in the caller progam before calling,
-        // but it does have to be initialized in the method before returning
+        // out does not have to be initialized in the caller progam before
+        // calling, but it does have to be initialized in the method before
+        // returning
         public int CalculateBonusAndBonusTax(int bonus, out int bonusTax)
         {
             bonusTax = 0;
@@ -227,24 +218,13 @@ namespace BethanysPieShopHRM.HR
 
         public double ReceiveWage(bool resetHours = true)
         {
-            double wageBeforeTax = 0.0;
-
-            if (EmployeeType == EmployeeType.Manager)
-            {
-                Console.WriteLine($"An extra was added to the wage since {FirstName} " +
-                    $"is a manager.");
-                wageBeforeTax = NumberOfHoursWorked * HourlyRate.Value * 1.25;
-            }
-            else
-            {
-                wageBeforeTax = NumberOfHoursWorked * HourlyRate.Value;
-            }
-
+            double wageBeforeTax = NumberOfHoursWorked * HourlyRate.Value;
             double taxAmount = wageBeforeTax * taxRate;
-            wage = wageBeforeTax - taxAmount;
 
-            Console.WriteLine($"{FirstName} {LastName} has received a wage of " +
-                $"{Wage} for {NumberOfHoursWorked} hour(s) of work.");
+            Wage = wageBeforeTax - taxAmount;
+
+            Console.WriteLine($"{FirstName} {LastName} has received a wage " +
+                $"of {Wage} for {NumberOfHoursWorked} hour(s) of work.");
 
             if (resetHours)
             {
@@ -269,7 +249,7 @@ namespace BethanysPieShopHRM.HR
         {
             Console.WriteLine($"\nFirst name: \t{FirstName}\nLast name: \t" +
                 $"{LastName}\nEmail: \t\t{Email}\nBirthday: \t" +
-                $"{BirthDay.ToShortDateString()}\nEmployee type: \t{EmployeeType}\n");
+                $"{BirthDay.ToShortDateString()}\n");
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 
 namespace BethanysPieShopHRM.HR
 {
+    // Struct because this is too small to need a full class
     internal struct WorkTask
     {
         public string description;

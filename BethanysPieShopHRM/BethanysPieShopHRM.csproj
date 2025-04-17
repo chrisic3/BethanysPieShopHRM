@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HR/" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="BethanysPieShopHRM.Logic">
       <HintPath>..\BethanysPieShopHRM.Logic.dll</HintPath>
     </Reference>
