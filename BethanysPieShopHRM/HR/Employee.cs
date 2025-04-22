@@ -63,7 +63,7 @@ namespace BethanysPieShopHRM.HR
             {
                 return numberOfHoursWorked;
             }
-            private set // Only the Employee class can set this value
+            protected set // Only the Employee class can set this value
             {
                 numberOfHoursWorked = value;
             }

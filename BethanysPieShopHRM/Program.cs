@@ -5,7 +5,7 @@ Console.WriteLine("--------------------\n");
 
 Employee bethany = new Employee("Bethany", "Smith", "bsmith@pies.shop", 
     new (1979, 01, 16), 25);
-Employee george = new Employee("George", "Will", "bwill@pies.shop", 
+Manager george = new Manager("George", "Will", "bwill@pies.shop", 
     new (1993, 05, 24), 20);
 
 #region First run Bethany
