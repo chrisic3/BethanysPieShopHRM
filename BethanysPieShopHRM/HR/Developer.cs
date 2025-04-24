@@ -2,17 +2,14 @@ using System;
 
 namespace BethanysPieShopHRM.HR;
 
-public class Developer : Employee
+class Developer : Employee
 {
     private string currentProject;
 
     public string CurrentProject
     {
         get
-        {
-            return currentProject;
-        }
-
+        { return currentProject; }
         set
         {
             currentProject = value;

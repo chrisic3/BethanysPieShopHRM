@@ -10,10 +10,7 @@ namespace BethanysPieShopHRM.Accounting
         public string CustomerId
         {
             get
-            {
-                return customerId;
-            }
-
+            { return customerId; }
             set
             {
                 customerId = value;
@@ -23,10 +20,7 @@ namespace BethanysPieShopHRM.Accounting
         public string Name
         {
             get
-            {
-                return name;
-            }
-
+            { return name; }
             set
             {
                 name = value;

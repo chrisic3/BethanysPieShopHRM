@@ -24,9 +24,7 @@ namespace BethanysPieShopHRM.HR
         public string FirstName
         {
             get
-            {
-                return firstName;
-            }
+            { return firstName; }
             set
             {
                 firstName = value;
@@ -36,9 +34,7 @@ namespace BethanysPieShopHRM.HR
         public string LastName
         {
             get
-            {
-                return lastName;
-            }
+            { return lastName; }
             set
             {
                 lastName = value;
@@ -48,9 +44,7 @@ namespace BethanysPieShopHRM.HR
         public string Email
         {
             get
-            {
-                return email;
-            }
+            { return email; }
             set
             {
                 email = value;
@@ -60,9 +54,7 @@ namespace BethanysPieShopHRM.HR
         public int NumberOfHoursWorked
         {
             get
-            {
-                return numberOfHoursWorked;
-            }
+            { return numberOfHoursWorked; }
             protected set // Only the Employee class can set this value
             {
                 numberOfHoursWorked = value;
@@ -72,9 +64,7 @@ namespace BethanysPieShopHRM.HR
         public double Wage
         {
             get
-            {
-                return wage;
-            }
+            { return wage; }
             private set
             {
                 wage = value;
@@ -84,9 +74,7 @@ namespace BethanysPieShopHRM.HR
         public double? HourlyRate
         {
             get
-            {
-                return hourlyRate;
-            }
+            { return hourlyRate; }
             set
             {
                 // Validate if the value entered is greater than 0
@@ -104,9 +92,7 @@ namespace BethanysPieShopHRM.HR
         public DateTime BirthDay
         {
             get
-            {
-                return birthDay;
-            }
+            { return birthDay; }
             set
             {
                 birthDay = value;
