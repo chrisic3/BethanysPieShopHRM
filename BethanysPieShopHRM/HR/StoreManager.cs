@@ -12,7 +12,6 @@ namespace BethanysPieShopHRM.HR
             DateTime birthDay, double? hourlyRate) : base(firstName, lastName,
             email, birthDay, hourlyRate)
         {
-
         }
     }
 }

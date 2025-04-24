@@ -20,6 +20,5 @@ class Developer : Employee
         DateTime birthday, double? hourlyRate) : base(firstName, lastName, 
         email, birthday, hourlyRate)
     {
-
     }
 }
