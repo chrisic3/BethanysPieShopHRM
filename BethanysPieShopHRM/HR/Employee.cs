@@ -15,8 +15,45 @@ namespace BethanysPieShopHRM.HR
         private double? hourlyRate; // ? means this type is nullable
         private DateTime birthDay;
         private const int minimalHoursWorkedUnit = 1;
+        private Address address;
 
         public static double taxRate = 0.15;
+
+        // CONSTRUCTORS
+        #region Constructors
+
+        public Employee(string firstName, string lastName, string email, 
+            DateTime birthDay, double? hourlyRate)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            BirthDay = birthDay;
+            // ?? is null coalesce, 10 is default if null
+            HourlyRate = hourlyRate ?? 10;
+        }
+
+        public Employee(string firstName, string lastName, string email, 
+            DateTime birthDay, double? hourlyRate, string street, string
+            houseNumber, string zipCode, string city)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            BirthDay = birthDay;
+            // ?? is null coalesce, 10 is default if null
+            HourlyRate = hourlyRate ?? 10;
+            Address = new Address(street, houseNumber, zipCode, city);
+        }
+
+        // The ": this()" calls the other constructor and passes it
+        // the required parameters.
+        public Employee(string firstName, string lastName, string email, 
+            DateTime birthDay) : this(firstName, lastName, email, birthDay, 0)
+        {
+        }
+
+        #endregion
 
         // PROPERTIES
         #region Properties
@@ -99,27 +136,12 @@ namespace BethanysPieShopHRM.HR
             }
         }
 
-        #endregion
-
-        // CONSTRUCTORS
-        #region Constructors
-
-        public Employee(string firstName, string lastName, string email, 
-            DateTime birthDay, double? hourlyRate)
+        public Address Address
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            BirthDay = birthDay;
-            // ?? is null coalesce, 10 is default if null
-            HourlyRate = hourlyRate ?? 10;
-        }
-
-        // The ": this()" calls the other constructor and passes it
-        // the required parameters.
-        public Employee(string firstName, string lastName, string email, 
-            DateTime birthDay) : this(firstName, lastName, email, birthDay, 0)
-        {
+            get { return address; }
+            set {
+                address = value;
+            }
         }
 
         #endregion
