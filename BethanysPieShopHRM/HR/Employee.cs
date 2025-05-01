@@ -216,6 +216,12 @@ namespace BethanysPieShopHRM.HR
             return bonus;
         }
 
+        public virtual void GiveBonus()
+        {
+            Console.WriteLine($"{FirstName} {LastName} received a generic bonus " +
+                $"of $100!");
+        }
+
         public double CalculateWage()
         {
             WageCalculations wageCalculations = new WageCalculations();
