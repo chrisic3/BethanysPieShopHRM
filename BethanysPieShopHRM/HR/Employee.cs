@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace BethanysPieShopHRM.HR
 {
-    internal class Employee
+    internal class Employee : IEmployee
     {
         // Need to change these all to private and add methods
         private string firstName;
@@ -251,6 +251,11 @@ namespace BethanysPieShopHRM.HR
         public static void DisplayTaxRate()
         {
             Console.WriteLine($"The current tax rate is {taxRate}");
+        }
+
+        public void GiveCompliment()
+        {
+            Console.WriteLine($"You've done a great job, {FirstName}.");
         }
 
         public string ConvertToJson()
