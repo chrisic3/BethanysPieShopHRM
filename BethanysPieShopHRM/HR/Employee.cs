@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace BethanysPieShopHRM.HR
 {
-    internal class Employee : IEmployee
+    public class Employee : IEmployee
     {
         // Need to change these all to private and add methods
         private string firstName;
