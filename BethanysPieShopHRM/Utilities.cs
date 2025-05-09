@@ -9,15 +9,30 @@ namespace BethanysPieShopHRM
 {
     internal class Utilities
     {
-        private static string directory = @"C:\Users\cpstelly\source\repos\test\BethanysPieShopHRM\BethanysPieShopHRM\";
+        //private static string directory = @"..\..\..\";
+        private static string directory = Directory.GetParent(
+            Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Data\";
         private static string fileName = "employees.txt";
 
         internal static void CheckForExistingEmployeeFile()
         {
-            //TODO: write code to check if file exists
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("TODO: write code to check if file exists");
-            Console.ResetColor();
+            string path = $"{directory}{fileName}";
+            bool existingFileFound = File.Exists(path);
+
+            if (existingFileFound)
+            {
+                Console.WriteLine("An existing file with Employee data is found.");
+            }
+            else
+            {
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Directory is ready for saving files.");
+                    Console.ResetColor();
+                }
+            }
         }
 
         internal static void RegisterEmployee(List<Employee> employees)
