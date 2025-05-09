@@ -12,11 +12,6 @@ namespace BethanysPieShopHRM
         private static string directory = @"C:\Users\cpstelly\source\repos\test\BethanysPieShopHRM\BethanysPieShopHRM\";
         private static string fileName = "employees.txt";
 
-        internal static void RegisterEmployee(List<Employee> employees)
-        {
-
-        }
-
         internal static void CheckForExistingEmployeeFile()
         {
             //TODO: write code to check if file exists
@@ -25,9 +20,80 @@ namespace BethanysPieShopHRM
             Console.ResetColor();
         }
 
+        internal static void RegisterEmployee(List<Employee> employees)
+        {
+            Console.WriteLine("Creating an employee");
+
+            Console.WriteLine("What type of employee do you want to register?");
+            Console.WriteLine("1: Employee\n2: Manager\n3: Store Manager\n4: Researcher" +
+                "\n5: Junior Researcher"); // Demonstrating using new lines to list the
+                                           // menu in one WriteLine
+            Console.WriteLine("Your selection: ");
+            string employeeType = Console.ReadLine();
+
+            if (employeeType != "1" && employeeType != "2" && employeeType != "3" &&
+                employeeType != "4" && employeeType != "5")
+            {
+                Console.WriteLine("Invalid selection");
+                return; // Return to the caller since there is nothing for this method
+                        // to do
+            }
+
+            Console.WriteLine("Enter the first name: ");
+            string firstName = Console.ReadLine();
+
+            Console.WriteLine("Enter the last name: ");
+            string lastName = Console.ReadLine();
+
+            Console.WriteLine("Enter the email: ");
+            string email = Console.ReadLine();
+
+            Console.WriteLine("Enter the birth day (ex. 2/16/2008): ");
+            DateTime birthDay = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the hourly rate: ");
+            string hourlyRate = Console.ReadLine();
+            double rate = double.Parse(hourlyRate); // Assuming for now input is 
+                                                    // in the correct format
+
+            Employee employee = null;
+
+            // No default since the earlier if ensures the type is valid
+            switch (employeeType)
+            {
+                case "1":
+                    employee = new Employee(firstName, lastName, email, birthDay,
+                        rate);
+                    break;
+                case "2":
+                    employee = new Manager(firstName, lastName, email, birthDay,
+                        rate);
+                    break;
+                case "3":
+                    employee = new StoreManager(firstName, lastName, email, birthDay,
+                        rate);
+                    break;
+                case "4":
+                    employee = new Researcher(firstName, lastName, email, birthDay,
+                        rate);
+                    break;
+                case "5":
+                    employee = new JuniorResearcher(firstName, lastName, email,
+                        birthDay, rate);
+                    break;
+            }
+
+            employees.Add(employee);
+
+            Console.WriteLine("Employee created.\n\n");
+        }
+
         internal static void ViewAllEmployees(List<Employee> employees)
         {
-
+            for (int i = 0; i < employees.Count; i++)
+            {
+                employees[i].DisplayEmployeeDetails();
+            }
         }
 
         internal static void LoadEmployees(List<Employee> employees)

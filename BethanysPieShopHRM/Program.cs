@@ -29,7 +29,37 @@ class Program
             Console.WriteLine("*******************");
 
             Console.WriteLine("1: Register employee");
+            Console.WriteLine("2: View all employees");
+            Console.WriteLine("3: Save data");
+            Console.WriteLine("4: Load data");
+            Console.WriteLine("9: Quit application");
+            Console.WriteLine("Your selection: ");
 
-        }    
+            userSelection = Console.ReadLine();
+
+            switch (userSelection)
+            {
+                case "1":
+                    Utilities.RegisterEmployee(employees);
+                    break;
+                case "2":
+                    Utilities.ViewAllEmployees(employees);
+                    break;
+                case "3":
+                    Utilities.SaveEmployees(employees);
+                    break;
+                case "4":
+                    Utilities.LoadEmployees(employees);
+                    break;
+                case "9":
+                    break;
+                default:
+                    Console.WriteLine("Invalid selection. Please try again.");
+                    break;
+            }
+        }
+        while (userSelection != "9");
+
+        Console.WriteLine("\nThank you for using the application.\n\nGoodbye");
     }
 }
