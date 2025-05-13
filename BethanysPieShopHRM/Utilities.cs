@@ -1,6 +1,7 @@
 ﻿using BethanysPieShopHRM.HR;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,7 +119,56 @@ namespace BethanysPieShopHRM
 
         internal static void SaveEmployees(List<Employee> employees)
         {
+            string path = $"{directory}{fileName}";
+            StringBuilder sb = new StringBuilder();
+            foreach (Employee employee in employees)
+            {
+                string type = GetEmployeeType(employee);
 
+                sb.Append($"firstName:{employee.FirstName};");
+                sb.Append($"lastName:{employee.LastName};");
+                sb.Append($"email:{employee.Email};");
+                sb.Append($"birthDay:{employee.BirthDay};");
+                sb.Append($"hourlyRate:{employee.HourlyRate};");
+                sb.Append($"type:{type};");
+                sb.Append(Environment.NewLine);
+
+                // Problem is we don't know what type of employee this is since
+                // they are all of type Employee, hence the GetEmployeeType method
+            }
+
+            File.WriteAllText(path, sb.ToString());
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Saved employees successfully");
+            Console.ResetColor();
+        }
+
+        private static string GetEmployeeType(Employee employee)
+        {
+            // We have to check for the most specific type first since
+            // they all extend Employee
+            if (employee is Manager)
+            {
+                return "2";
+            }
+            else if (employee is StoreManager)
+            {
+                return "3";
+            }
+            else if (employee is JuniorResearcher)
+            {
+                return "5";
+            }
+            else if (employee is Researcher)
+            {
+                return "4";
+            }
+            else if (employee is Employee)
+            {
+                return "1";
+            }
+
+            return "0";
         }
     }
 }
