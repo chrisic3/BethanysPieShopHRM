@@ -179,6 +179,23 @@ namespace BethanysPieShopHRM
             }
         }
 
+        internal static void LoadEmployeeById(List<Employee> employees)
+        {
+            try
+            {
+                Console.WriteLine("Enter the Employee ID you want to view: ");
+                int id = int.Parse(Console.ReadLine());
+                Employee employee = employees[id];
+                employee.DisplayEmployeeDetails();
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("That's not the correct format to enter an id.\n\n");
+                Console.ResetColor();
+            }
+        }
+
         internal static void SaveEmployees(List<Employee> employees)
         {
             string path = $"{directory}{fileName}";
