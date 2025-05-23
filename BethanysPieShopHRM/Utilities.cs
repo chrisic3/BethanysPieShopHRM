@@ -121,60 +121,72 @@ namespace BethanysPieShopHRM
         internal static void LoadEmployees(List<Employee> employees)
         {
             string path = $"{directory}{fileName}";
-            if (File.Exists(path))
+
+            try
             {
-                employees.Clear();
-
-                // Read the employees to an array
-                string[] employeesAsString = File.ReadAllLines(path);
-                for (int i = 0; i < employeesAsString.Length; i++)
+                if (File.Exists(path))
                 {
-                    // Split each employee by ';' and save each piece to array
-                    string[] employeeSplits = employeesAsString[i].Split(';');
-                    string firstName = employeeSplits[0].Substring(
-                        employeeSplits[0].IndexOf(':') + 1);
-                    string lastName = employeeSplits[1].Substring(
-                        employeeSplits[1].IndexOf(':') + 1);
-                    string email = employeeSplits[2].Substring(
-                        employeeSplits[2].IndexOf(':') + 1);
-                    DateTime birthDay = DateTime.Parse(employeeSplits[3].
-                        Substring(employeeSplits[3].IndexOf(':') + 1));
-                    double hourlyRate = double.Parse(employeeSplits[4].
-                        Substring(employeeSplits[4].IndexOf(':') + 1));
-                    string employeeType = employeeSplits[5].Substring(
-                        employeeSplits[5].IndexOf(':') + 1);
+                    employees.Clear();
 
-                    Employee employee = null;
-
-                    switch (employeeType)
+                    // Read the employees to an array
+                    string[] employeesAsString = File.ReadAllLines(path);
+                    for (int i = 0; i < employeesAsString.Length; i++)
                     {
-                        case "1":
-                            employee = new Employee(firstName, lastName, email,
-                                birthDay, hourlyRate);
-                            break;
-                        case "2":
-                            employee = new Manager(firstName, lastName, email,
-                                birthDay, hourlyRate);
-                            break;
-                        case "3":
-                            employee = new StoreManager(firstName, lastName,
-                                email, birthDay, hourlyRate);
-                            break;
-                        case "4":
-                            employee = new Researcher(firstName, lastName, email,
-                                birthDay, hourlyRate);
-                            break;
-                        case "5":
-                            employee = new JuniorResearcher(firstName, lastName,
-                                email, birthDay, hourlyRate);
-                            break;
+                        // Split each employee by ';' and save each piece to array
+                        string[] employeeSplits = employeesAsString[i].Split(';');
+                        string firstName = employeeSplits[0].Substring(
+                            employeeSplits[0].IndexOf(':') + 1);
+                        string lastName = employeeSplits[1].Substring(
+                            employeeSplits[1].IndexOf(':') + 1);
+                        string email = employeeSplits[2].Substring(
+                            employeeSplits[2].IndexOf(':') + 1);
+                        DateTime birthDay = DateTime.Parse(employeeSplits[3].
+                            Substring(employeeSplits[3].IndexOf(':') + 1));
+                        double hourlyRate = double.Parse(employeeSplits[4].
+                            Substring(employeeSplits[4].IndexOf(':') + 1));
+                        string employeeType = employeeSplits[5].Substring(
+                            employeeSplits[5].IndexOf(':') + 1);
+
+                        Employee employee = null;
+
+                        switch (employeeType)
+                        {
+                            case "1":
+                                employee = new Employee(firstName, lastName, email,
+                                    birthDay, hourlyRate);
+                                break;
+                            case "2":
+                                employee = new Manager(firstName, lastName, email,
+                                    birthDay, hourlyRate);
+                                break;
+                            case "3":
+                                employee = new StoreManager(firstName, lastName,
+                                    email, birthDay, hourlyRate);
+                                break;
+                            case "4":
+                                employee = new Researcher(firstName, lastName, email,
+                                    birthDay, hourlyRate);
+                                break;
+                            case "5":
+                                employee = new JuniorResearcher(firstName, lastName,
+                                    email, birthDay, hourlyRate);
+                                break;
+                        }
+
+                        employees.Add(employee);
                     }
 
-                    employees.Add(employee);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Loaded {employees.Count} employees!\n\n");
+                    Console.ResetColor();
                 }
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Loaded {employees.Count} employees!\n\n");
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Could not find the file.");
+                Console.WriteLine(fnfex.Message);
+                Console.WriteLine(fnfex.StackTrace);
                 Console.ResetColor();
             }
         }

@@ -25,7 +25,7 @@ class Program
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("*******************");
-            Console.WriteLine("* Selet an action *");
+            Console.WriteLine("* Select an action *");
             Console.WriteLine("*******************");
 
             Console.WriteLine("1: Register employee");
