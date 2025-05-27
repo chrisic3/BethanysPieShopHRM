@@ -25,13 +25,14 @@ class Program
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("*******************");
-            Console.WriteLine("* Selet an action *");
+            Console.WriteLine("* Select an action *");
             Console.WriteLine("*******************");
 
             Console.WriteLine("1: Register employee");
             Console.WriteLine("2: View all employees");
             Console.WriteLine("3: Save data");
             Console.WriteLine("4: Load data");
+            Console.WriteLine("5: View specific employee"); 
             Console.WriteLine("9: Quit application");
             Console.WriteLine("Your selection: ");
 
@@ -50,6 +51,9 @@ class Program
                     break;
                 case "4":
                     Utilities.LoadEmployees(employees);
+                    break;
+                case "5":
+                    Utilities.LoadEmployeeById(employees);
                     break;
                 case "9":
                     break;
